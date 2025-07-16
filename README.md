@@ -13,7 +13,14 @@
  ✍️ 
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight)
 
+
+  ![snake gif](https://github.com/SoupayanGhosh/SoupayanGhosh/blob/output/github-snake-dark.svg)
+
+
+
 ---
 [![](https://visitcount.itsvg.in/api?id=SoupayanGhosh&icon=6&color=7)](https://visitcount.itsvg.in)
+
+
 
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
