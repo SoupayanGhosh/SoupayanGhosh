@@ -14,6 +14,7 @@ jobs:
     name: generate-github-profile-3d-contrib
     steps:
       - uses: actions/checkout@v4
+
       - name: Print current time in IST
         run: |
           sudo apt-get update
@@ -21,10 +22,12 @@ jobs:
           sudo ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
           dpkg-reconfigure -f noninteractive tzdata
           date
+
       - uses: yoshi389111/github-profile-3d-contrib@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: SoupayanGhosh
+
       - name: Commit & Push
         run: |
           git config user.name "SoupayanGhosh"
@@ -33,3 +36,4 @@ jobs:
           if git commit -m "generated"; then
             git push
           fi
+
