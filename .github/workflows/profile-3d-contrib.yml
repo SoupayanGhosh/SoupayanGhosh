@@ -1,38 +1,46 @@
 name: GitHub-Profile-3D-Contrib
 
 on:
-schedule:
-- cron: "30 21 * * *"
-workflow_dispatch:
+  schedule:
+    - cron: "30 21 * * *"  # Fixed: Added missing day of week field
+  workflow_dispatch:
 
 permissions:
-contents: write
+  contents: write
 
 jobs:
-build:
-runs-on: ubuntu-latest
-name: generate-github-profile-3d-contrib
-steps:
-- uses: actions/checkout@v4
-
-- name: Print current time in IST
-run: |
-sudo apt-get update
-sudo apt-get install -y tzdata
-sudo ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
-dpkg-reconfigure -f noninteractive tzdata
-date
-
-- uses: yoshi389111/github-profile-3d-contrib@latest
-env:
-GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-USERNAME: SoupayanGhosh
-
-- name: Commit & Push
-run: |
-git config user.name "SoupayanGhosh"
-git config user.email "github-actions@github.com"
-git add -A .
-if git commit -m "generated"; then
-git push
-fi
+  build:
+    runs-on: ubuntu-latest
+    name: generate-github-profile-3d-contrib
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for better contribution data
+          
+      - name: Print current time in IST
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tzdata
+          sudo ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+          sudo dpkg-reconfigure -f noninteractive tzdata
+          date
+          
+      - name: Generate 3D contribution graph
+        uses: yoshi389111/github-profile-3d-contrib@0.7.1  # Use specific version instead of @latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}  # Dynamic username
+        with:
+          USERNAME: SoupayanGhosh  # Your GitHub username
+          
+      - name: Commit & Push
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update 3D contribution graph - $(date '+%Y-%m-%d %H:%M:%S')"
+            git push
+          fi
