@@ -30,6 +30,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: SoupayanGhosh
+          SETTING_JSON: |
+            {
+              "type": "normal",
+              "contributionView": "allTime",
+              "showStats": true,
+              "showStatsAverage": true,
+              "maxCommitCountDay": 30,
+              "maxBlockHeightGap": 7
+            }
           
       - name: Commit & Push
         run: |
