@@ -11,8 +11,7 @@
 ![Trophy](https://github-profile-trophy.vercel.app/?username=SoupayanGhosh&theme=radical&no-frame=false&no-bg=true&margin-w=4)
 
 
-![GitHub Contribution Graph](./profile-3d-contrib/profile-green-animate.svg)
-
+![GitHub Contribution Graph](./profile-3d-contrib/profile-night-rainbow.svg)
 
 [![An image of @soupayanghosh's Holopin badges, which is a link to view their full Holopin profile](https://holopin.me/soupayanghosh)](https://holopin.io/@soupayanghosh)
 
