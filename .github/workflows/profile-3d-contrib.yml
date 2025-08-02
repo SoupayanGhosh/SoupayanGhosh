@@ -11,7 +11,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: generate-github-profile-3d-contribution
+    name: generate-github-profile-3d-contrib
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,12 +26,10 @@ jobs:
           date
           
       - name: Generate 3D contribution graph
-        uses: yoshi389111/github-profile-3d-contrib@0.7.1  # Use specific version instead of @latest
+        uses: yoshi389111/github-profile-3d-contrib@0.7.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          USERNAME: ${{ github.repository_owner }}  # Dynamic username
-        with:
-          USERNAME: SoupayanGhosh  # Your GitHub username
+          USERNAME: SoupayanGhosh
           
       - name: Commit & Push
         run: |
@@ -42,5 +40,6 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Update 3D contribution graph - $(date '+%Y-%m-%d %H:%M:%S')"
+            git pull --rebase origin main
             git push
           fi
